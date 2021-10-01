@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/products">Health Taste</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault"
+      aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <ng-template #zero>
+      <span class="badge badge-warning badge-pill">0</span>
+    </ng-template>
+
+  
+    
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+      <ul class="navbar-nav me-auto mb-2 mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/shopping-cart">
+            <i class="bi bi-cart-plus"></i>
+            <span *ngIf="appUser else zero" class="badge badge-warning badge-pill">
+              {{shoppingCartCounter}}
+            </span>
+          </a>
+        </li>
+
+        <ng-template #anonymousUser>
+          <div>
+            <a class="nav-link" routerLink="/login">Login</a>
+          </div>
+        </ng-template>
+
+        <div ngbDropdown *ngIf="appUser else anonymousUser" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" ngbDropdownToggle id="dropdown01" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{ appUser.name }}
+          </a>
+          <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+            <li><a class="dropdown-item" routerLink="products">Home</a></li>
+
+            <ng-container *ngIf="!appUser.isAdmin">
+            <li><a class="dropdown-item" routerLink="/my/orders">My Orders</a></li>
+            </ng-container>
+
+            <ng-container *ngIf="appUser.isAdmin">
+              <li><a class="dropdown-item" routerLink="/admin/products">Manage Products</a></li>
+            </ng-container>
+
+            <li><a class="dropdown-item" (click)="logout()">Log Out</a></li>
+          </div>
+        </div>
+        <button class="btn btn-dark" (click)="showRatings()">suppliers ratings</button>
+      </ul>
+      
+    </div>
+   
+  </div>
+</nav>

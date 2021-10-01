@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "deployangular-5916e"
+  },
+  "targets": {
+    "deployangular-5916e": {
+      "hosting": {
+        "HTM": [
+          "deployangular-5916e"
+        ]
+      }
+    }
+  }
+}

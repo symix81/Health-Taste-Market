@@ -1,0 +1,31 @@
+<div class="card" *ngIf="product.payload.val().title" style="width: 18rem;">
+    <img class="card-img-top" [src]="product.payload.val().imageUrl" *ngIf="product.payload.val().imageUrl">
+    <div class="card-body">
+        <h5 class="card-title">Title: {{ product?.payload.val().title }}</h5>
+        <p class="card-text">Sale: {{ product?.payload.val().sale }}</p>
+        <p *ngIf="product?.payload.val().sale === '0%' ; else twsale" class="card-text">Price: {{ product?.payload.val().price | currency:'USD':true }}</p>
+        <p #twsale *ngIf="product?.payload.val().sale === '20%' ; else thsale">Price: {{ ((product?.payload.val().price)-(product?.payload.val().price)*0.2) | currency:'USD':true }}</p>
+        <p #thsale *ngIf="product?.payload.val().sale === '30%' ; else fifsale">Price: {{ ((product?.payload.val().price)-(product?.payload.val().price)*0.3) | currency:'USD':true }}</p>
+        <p #fifsale *ngIf="product?.payload.val().sale === '50%' ; else sevsale">Price: {{ (product?.payload.val().price)/2 | currency:'USD':true }}</p>
+        <p #sevsale *ngIf="product?.payload.val().sale === '75%'">Price: {{ ((product?.payload.val().price)-(product?.payload.val().price)*0.75) | currency:'USD':true }}</p>
+        <p><button class="btn btn-warning" (click)="set(product?.payload.val().suppliername)">Rate: {{ product?.payload.val().suppliername }}</button></p>
+    </div>
+    <div class="card-footer">
+        <button *ngIf="getQuantity() === 0 || !appUsr ; else updateQuantity" (click)="addToCart()"
+            class="btn btn-info btn-block">Add to Cart</button>
+    </div>
+
+    <ng-template #updateQuantity>
+        <div class="row no-gutters">
+            <div class="col-2">
+                <button (click)="removeFromCart()" class="btn btn-danger btn-block">-</button>
+            </div>
+            <div class="col text-center">
+                {{getQuantity()}} in Cart
+            </div>
+            <div class="col-2">
+                <button (click)="addToCart()" class="btn btn-success btn-block">+</button>
+            </div>
+        </div>
+    </ng-template>
+</div>

@@ -1,0 +1,22 @@
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Supplier Name</th>
+      <th scope="col">Supplier E-mail</th>
+      <th scope="col">Rating</th>
+    </tr>
+  </thead>
+
+
+
+  <tbody>
+    <tr *ngFor="let supp of suppliers$ | async">
+        <td>{{supp.name}}</td>
+        <td>{{supp.email}}</td>
+        <td>{{supp.rate}}</td>
+    </tr>
+</tbody>
+
+
+
+</table>

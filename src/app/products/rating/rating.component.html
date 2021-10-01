@@ -1,0 +1,25 @@
+<h1 style="color: teal;">Please rate {{ suppName }}</h1>
+<p>Your rating should be based on 2 subjects: Communication and delivery time</p>
+
+<form #s="ngForm" (ngSubmit)="save(s.value)">
+  <p style="color: teal;">Please select below the rating from 1 to 5:</p>
+
+  <input type="radio" id="1" name="rate" value="1" ngModel>
+  <label for="1">1</label><br>
+
+  <input type="radio" id="2" name="rate" value="2" ngModel>
+  <label for="2">2</label><br>
+
+  <input type="radio" id="3" name="rate" value="3" ngModel>
+  <label for="3">3</label><br>
+
+  <input type="radio" id="4" name="rate" value="4" ngModel>
+  <label for="4">4</label><br>
+
+  <input type="radio" id="5" name="rate" value="5" ngModel>
+  <label for="5">5</label><br>
+
+  <button class="btn btn-success">save</button>
+
+</form>
+

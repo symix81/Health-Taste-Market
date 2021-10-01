@@ -1,0 +1,31 @@
+<h1>Shopping Cart Items</h1>
+<ng-container *ngIf="cart$ | async as cart">
+    <p *ngIf="appUser">You have {{cart.getTotalCount}} items in your cart!</p>
+    <p *ngIf="!appUser">You have 0 items in your cart!</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="cart.getTotalCount !== 0 && appUser">
+            <tr *ngFor="let prodID of cart.productids">
+                <td *ngIf="cart.items[prodID].quantity!==0">{{cart.items[prodID].product.title}}</td>
+                <td *ngIf="cart.items[prodID].quantity!==0">{{cart.items[prodID].quantity}}</td>
+                <td *ngIf="cart.items[prodID].quantity!==0">${{cart.items[prodID].product.price}}</td>
+                <td *ngIf="cart.items[prodID].quantity!==0">
+                    ${{(cart.items[prodID].product.price)*(cart.items[prodID].quantity)}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>$ {{cart.totalItemsPrice}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" class="btn btn-primary" routerLink="/my/orders" >Continue to Checkout</button>
+</ng-container>

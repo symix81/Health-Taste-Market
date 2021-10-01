@@ -1,0 +1,13 @@
+<form #s="ngForm" (ngSubmit)="save(s.value)">
+<div class="container">
+    <h1>Please choose your target behind using Health-taste</h1>
+
+    <input type="radio" id="Admin" name="guest" value="true"  ngModel>
+    <label for="Admin" style="font-size: larger;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Admin: You want to create a store</label><br>
+  
+    <input type="radio" id="User" name="guest" value="false" ngModel>
+    <label for="User" style="font-size: larger;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">User: You want to have access and use the website</label><br>
+  
+    <button class="btn btn-success">submit</button>
+  </div>
+</form>
